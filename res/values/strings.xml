@@ -26,4 +26,7 @@
     <string name="set">Set</string>
     <string name="color_default">Default</string>
 
+    <!-- IconPack Preference -->
+    <string name="default_iconpack_title">Default</string>
+
 </resources>
