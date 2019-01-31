@@ -82,7 +82,7 @@ public class IconPackPreference extends Preference {
 
     private void setNone() {
         setIcon(getContext().getResources().getDrawable(android.R.drawable.sym_def_app_icon));
-        setSummary(getContext().getResources().getString(R.string.default_iconpack_title));
+        setSummary(getContext().getResources().getString(R.string.color_default));
     }
 
     @Override
@@ -164,7 +164,7 @@ public class IconPackPreference extends Preference {
             });
 
             Resources res = context.getResources();
-            String defaultLabel = context.getResources().getString(R.string.default_iconpack_title);
+            String defaultLabel = context.getResources().getString(R.string.color_default);
             Drawable icon = res.getDrawable(android.R.drawable.sym_def_app_icon);
             mSupportedPackages.add(0, new IconPackInfo(defaultLabel, icon, ""));
             mCurrentIconPack = currentPack;
