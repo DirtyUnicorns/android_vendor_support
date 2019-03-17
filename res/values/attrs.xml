@@ -35,4 +35,10 @@
         <attr name="civ_border_color" format="color"/>
     </declare-styleable>
 
+    <!-- Base attributes available to RowLayout -->
+    <declare-styleable name="RowLayout">
+        <attr name="android:verticalSpacing" />
+        <attr name="android:horizontalSpacing" />
+    </declare-styleable>
+
 </resources>
