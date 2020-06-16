@@ -61,6 +61,8 @@ public class ColorPickerPreference extends Preference implements
     private boolean mShowLedPreview;
     private boolean mShowReset;
     private boolean mShowPreview;
+    private boolean mDividerAbove;
+    private boolean mDividerBelow;
     private EditText mEditText;
 
     //private boolean mIsCrappyLedDevice;
@@ -93,7 +95,7 @@ public class ColorPickerPreference extends Preference implements
     @Override
     protected void onSetInitialValue(boolean restorePersistedValue, Object defaultValue) {
         // when using PreferenceDataStore, restorePersistedValue is always true (see Preference class for reference)
-        // so we load the persistent value with getPersistedInt if available in the data store, 
+        // so we load the persistent value with getPersistedInt if available in the data store,
         // and use defaultValue as fallback (onGetDefaultValue has been already called and it loaded the android:defaultValue attr from our xml).
         if (defaultValue == null) {
             // if we forgot to add android:defaultValue, default to black color
@@ -111,6 +113,8 @@ public class ColorPickerPreference extends Preference implements
             mDefaultValue = attrs.getAttributeIntValue(ANDROIDNS, "defaultValue", Color.BLACK);
             mShowReset = attrs.getAttributeBooleanValue(SETTINGS_NS, "showReset", false);
             mShowPreview = attrs.getAttributeBooleanValue(SETTINGS_NS, "showPreview", true);
+            mDividerAbove = attrs.getAttributeBooleanValue(SETTINGS_NS, "dividerAbove", false);
+            mDividerBelow = attrs.getAttributeBooleanValue(SETTINGS_NS, "dividerBelow", false);
         }
     }
 
@@ -118,6 +122,8 @@ public class ColorPickerPreference extends Preference implements
     public void onBindViewHolder(PreferenceViewHolder view) {
         mView = view;
         super.onBindViewHolder(view);
+        view.setDividerAllowedAbove(mDividerAbove);
+        view.setDividerAllowedBelow(mDividerBelow);
 
         view.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
