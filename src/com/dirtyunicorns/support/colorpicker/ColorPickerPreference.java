@@ -48,6 +48,7 @@ public class ColorPickerPreference extends Preference implements
         Preference.OnPreferenceClickListener, ColorPickerDialog.OnColorChangedListener {
 
     private static final String ANDROIDNS = "http://schemas.android.com/apk/res/android";
+    private static final String SETTINGS_NS = "http://schemas.android.com/apk/res/com.android.settings";
 
     PreferenceViewHolder mView;
     LinearLayout mWidgetFrameView;
@@ -58,6 +59,8 @@ public class ColorPickerPreference extends Preference implements
     private boolean mAlphaSliderEnabled = false;
     private boolean mIsLedColorPicker;
     private boolean mShowLedPreview;
+    private boolean mShowReset;
+    private boolean mShowPreview;
     private EditText mEditText;
 
     //private boolean mIsCrappyLedDevice;
@@ -105,6 +108,8 @@ public class ColorPickerPreference extends Preference implements
         if (attrs != null) {
             mAlphaSliderEnabled = attrs.getAttributeBooleanValue(null, "alphaSlider", false);
             mDefaultValue = attrs.getAttributeIntValue(ANDROIDNS, "defaultValue", Color.BLACK);
+            mShowReset = attrs.getAttributeBooleanValue(SETTINGS_NS, "showReset", false);
+            mShowPreview = attrs.getAttributeBooleanValue(SETTINGS_NS, "showPreview", true);
         }
     }
 
@@ -141,7 +146,7 @@ public class ColorPickerPreference extends Preference implements
      * @author Randall Rushing aka Bigrushdog
      */
     private void setDefaultButton() {
-        if (mView == null || mWidgetFrameView == null)
+        if (!mShowReset || mView == null || mWidgetFrameView == null)
             return;
 
         ImageView defView = new ImageView(getContext());
@@ -175,7 +180,7 @@ public class ColorPickerPreference extends Preference implements
     }
 
     private void setPreviewColor() {
-        if (mView == null || mWidgetFrameView == null)
+        if (!mShowPreview || mView == null || mWidgetFrameView == null)
             return;
 
         ImageView iView = new ImageView(getContext());
